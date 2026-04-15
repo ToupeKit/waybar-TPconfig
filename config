@@ -1,0 +1,112 @@
+{
+  "layer": "top",
+  "position": "top",
+  "height": 36,
+  "spacing": 0,
+  "exclusive": true,
+  "fixed-center": true,
+
+  "modules-left": [],
+
+  "modules-center": [
+    "cpu",
+    "memory",
+    "temperature",
+    "hyprland/workspaces",
+    "power-profiles-daemon",
+    "network"
+  ],
+
+  "modules-right": [
+    "clock",
+    "battery"
+  ],
+
+  "cpu": {
+    "interval": 2,
+    "format": " {usage}%",
+    "tooltip": false
+  },
+
+  "memory": {
+    "interval": 2,
+    "format": " {percentage}%",
+    "tooltip-format": "{used:0.1f}G / {total:0.1f}G",
+    "warning": 75,
+    "critical": 90
+  },
+
+  "temperature": {
+    // Если путь hwmon1 перестанет работать, просто удалите строку ниже 
+    // или замените на "thermal-zone": 0
+    "hwmon-path": "/sys/class/hwmon/hwmon4/temp1_input", 
+    "interval": 2,
+    "critical-threshold": 80,
+    "format": "{icon} {temperatureC}°C",
+    "format-icons": ["", "", ""],
+    "tooltip": true
+  },
+
+  "hyprland/workspaces": {
+    "format": "{id}",
+    "on-click": "activate",
+    "all-outputs": false,
+    "active-only": false,
+    "persistent-workspaces": {
+      "1": [],
+      "2": [],
+      "3": [],
+      "4": [],
+      "5": []
+    },
+    "sort-by-number": true
+  },
+
+  "power-profiles-daemon": {
+    "format": "{icon}",
+    "tooltip-format": "Режим: {profile}\nИсточник: {driver}",
+    "tooltip": true,
+    "format-icons": {
+      "default": "",
+      "performance": " ",
+      "balanced": " ",
+      "power-saver": " "
+    }
+  },
+
+  "network": {
+    "interval": 5,
+    "format-wifi": "  {essid}",
+    "format-ethernet": "󰈀  {ipaddr}",
+    "format-disconnected": "󰖪 Disconnected",
+    "tooltip-format": "IP: {ipaddr}\nСигнал: {signalStrength}%",
+    "on-click": "networkmanager_dmenu"
+  },
+
+  "clock": {
+    "interval": 1,
+    "format": " {:%H:%M}",
+    "format-alt": " {:%d.%m.%Y %H:%M:%S}",
+    "tooltip-format": "<tt><small>{calendar}</small></tt>",
+    "calendar": {
+      "mode": "month",
+      "weeks-pos": "left",
+      "format": {
+        "today": "<span color='#e0af68'><b>{}</b></span>"
+      }
+    }
+  },
+
+  "battery": {
+    "interval": 10,
+    "states": {
+      "warning": 30,
+      "critical": 15
+    },
+    "format": "{icon} {capacity}%",
+    "format-charging": "󰂄 {capacity}%",
+    "format-plugged": " {capacity}%",
+    "format-icons": ["󰁺", "󰁼", "󰁾", "󰂀", "󰁹"],
+    "tooltip-format": "{time} · {power:.1f}W"
+  }
+}

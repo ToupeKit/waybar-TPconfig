@@ -1,0 +1,159 @@
+/* ═══════════════════════════════════════════════════════════
+   Waybar — Hyprland / ArchLinux
+   Тема: Tokyo Night (тёмная, лаконичная)
+   ═══════════════════════════════════════════════════════════ */
+
+@define-color bg        #0d0f18;
+@define-color bg-mid    #151825;
+@define-color bg-hover  #1e2235;
+@define-color border    #2a2f45;
+@define-color fg        #c8cde8;
+@define-color fg-dim    #6b7094;
+@define-color accent    #7aa2f7;
+@define-color green     #9ece6a;
+@define-color yellow    #e0af68;
+@define-color red       #f7768e;
+@define-color cyan      #7dcfff;
+@define-color purple    #bb9af7;
+
+* {
+  font-family: "JetBrainsMono Nerd Font", "Noto Sans", monospace;
+  font-size: 13px;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  min-height: 0;
+}
+
+window#waybar {
+  background-color: @bg;
+  border-bottom: 1px solid @border;
+  color: @fg;
+}
+
+/* ── Общий стиль блоков ─────────────────────────────────── */
+
+.modules-center, .modules-right, .modules-left {
+  background: transparent;
+}
+
+/* ── Системные ресурсы (Центр) ───────────────────────────── */
+
+#cpu {
+  color: @cyan;
+  padding: 0 10px 0 14px;
+  margin: 6px 0;
+}
+
+#memory {
+  color: @purple;
+  padding: 0 10px;
+  margin: 6px 0;
+}
+
+#memory.warning { color: @yellow; }
+#memory.critical { color: @red; }
+
+#temperature {
+  color: @green;
+  padding: 0 10px;
+  margin: 6px 0;
+}
+
+#temperature.critical { color: @red; }
+
+/* ── Воркспейсы ─────────────────────────────────────────── */
+
+#workspaces {
+  padding: 0 6px;
+  margin: 6px 4px;
+  border-left: 1px solid @border;
+  border-right: 1px solid @border;
+}
+
+#workspaces button {
+  color: @fg-dim;
+  background: transparent;
+  padding: 0 8px;
+  margin: 0 2px;
+  min-width: 20px;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+#workspaces button:hover {
+  background: @bg-hover;
+  color: @fg;
+}
+
+#workspaces button.active {
+  background: @accent;
+  color: @bg;
+  font-weight: bold;
+}
+
+#workspaces button.urgent {
+  background: @red;
+  color: @bg;
+}
+
+/* ── Управление питанием (Power Profiles) ───────────────── */
+
+#power-profiles-daemon {
+  padding: 0 10px;
+  margin: 6px 0;
+  border-right: 1px solid @border;
+}
+
+#power-profiles-daemon.performance { color: @red; }
+#power-profiles-daemon.balanced { color: @yellow; }
+#power-profiles-daemon.power-saver { color: @green; }
+
+/* ── Сеть (WiFi) ────────────────────────────────────────── */
+
+#network {
+  color: @accent;
+  padding: 0 14px 0 10px;
+  margin: 6px 0;
+}
+
+#network.disconnected {
+  color: @red;
+}
+
+/* ── Часы (Право) ───────────────────────────────────────── */
+
+#clock {
+  color: @fg;
+  padding: 0 12px 0 16px;
+  margin: 6px 0;
+  border-left: 1px solid @border;
+  letter-spacing: 0.03em;
+}
+
+/* ── Батарея ────────────────────────────────────────────── */
+
+#battery {
+  color: @green;
+  padding: 0 14px 0 10px;
+  margin: 6px 0;
+  border-left: 1px solid @border;
+}
+
+#battery.warning { color: @yellow; }
+#battery.critical:not(.charging) { 
+  color: @red; 
+  animation: pulse 1s linear infinite; 
+}
+
+#battery.charging, #battery.plugged { 
+  color: @cyan; 
+}
+
+/* ── Анимации ───────────────────────────────────────────── */
+
+@keyframes pulse {
+  0%   { opacity: 1.0; }
+  50%  { opacity: 0.4; }
+  100% { opacity: 1.0; }
+}
