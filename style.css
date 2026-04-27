@@ -157,3 +157,18 @@ window#waybar {
   50%  { opacity: 0.4; }
   100% { opacity: 1.0; }
 }
+#modules-center {
+    background-color: rgba(30, 30, 46, 0.8); /* Если нужен фон для всей центральной панели */
+    border-radius: 10px;
+    padding: 0 10px;
+}
+
+/* Заставляем все числа занимать одинаковое место */
+label {
+    font-family: "JetBrainsMono Nerd Font"; /* Или другой моноширинный шрифт */
+}
+
+/* Ограничиваем блоки, чтобы изменение 5% на 100% не толкало соседа */
+#cpu, #memory {
+    min-width: 75px;
+}
