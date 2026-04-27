@@ -1,5 +1,6 @@
 # waybar-TPconfig
 my config and style for waybar
+
 код делал ИИ так как я не умею
 
 **V1**
