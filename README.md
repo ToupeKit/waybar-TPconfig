@@ -1,5 +1,5 @@
-# waybar-TPconfig
-my config and style for waybar
+# TPconfig
+my config and style for waybar or other
 
 код делал ИИ так как я не умею
 
