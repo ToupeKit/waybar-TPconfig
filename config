@@ -1,49 +1,55 @@
 {
   "layer": "top",
   "position": "top",
-  "height": 36,
+  "height": 32,
   "spacing": 0,
   "exclusive": true,
   "fixed-center": true,
+  "margin-top": 2,
+  "margin-bottom": 100,
+  "margin-left": 10,
+  "margin-right": 10,
 
-  "modules-left": [],
-
-  "modules-center": [
+  "modules-left": [
     "cpu",
     "memory",
     "temperature",
-    "hyprland/workspaces",
-    "power-profiles-daemon",
-    "network"
+    "custom/separator",
+    "power-profiles-daemon"
+  ],
+
+  "modules-center": [
+    "hyprland/workspaces"
   ],
 
   "modules-right": [
-    "clock",
-    "battery"
+    "network",
+    "custom/separator",
+    "tray",
+    "battery",
+    "clock"
   ],
 
   "cpu": {
     "interval": 2,
-    "format": " {usage}%",
+    "format": "󰍛 {usage}%",
     "tooltip": false
   },
 
   "memory": {
     "interval": 2,
-    "format": " {percentage}%",
-    "tooltip-format": "{used:0.1f}G / {total:0.1f}G",
+    "format": "󰾆 {percentage}%",
+    "tooltip-format": "{used:0.1f} GB / {total:0.1f} GB",
     "warning": 75,
     "critical": 90
   },
 
   "temperature": {
-    // Если путь hwmon1 перестанет работать, просто удалите строку ниже 
-    // или замените на "thermal-zone": 0
-    "hwmon-path": "/sys/class/hwmon/hwmon4/temp1_input", 
+    "hwmon-path": "/sys/class/hwmon/hwmon4/temp1_input",
     "interval": 2,
     "critical-threshold": 80,
-    "format": "{icon} {temperatureC}°C",
-    "format-icons": ["", "", ""],
+    "format": "{icon} {temperatureC}°",
+    "format-icons": ["󰜗", "󰜗", "󰜗"],
     "tooltip": true
   },
 
@@ -64,37 +70,28 @@
 
   "power-profiles-daemon": {
     "format": "{icon}",
-    "tooltip-format": "Режим: {profile}\nИсточник: {driver}",
+    "tooltip-format": "Профиль: {profile}\nДрайвер: {driver}",
     "tooltip": true,
     "format-icons": {
-      "default": "",
-      "performance": " ",
-      "balanced": " ",
-      "power-saver": " "
+      "default":      "󱐋",
+      "performance":  "󱐋",
+      "balanced":     "󰾅",
+      "power-saver":  "󰌪"
     }
   },
 
   "network": {
     "interval": 5,
-    "format-wifi": "  {essid}",
+    "format-wifi": "󰤨  {essid}",
     "format-ethernet": "󰈀  {ipaddr}",
-    "format-disconnected": "󰖪 Disconnected",
-    "tooltip-format": "IP: {ipaddr}\nСигнал: {signalStrength}%",
+    "format-disconnected": "󰤭  Offline",
+    "tooltip-format": "IP: {ipaddr}\nСигнал: {signalStrength}%\nСкорость: ↓{bandwidthDownBits} ↑{bandwidthUpBits}",
     "on-click": "networkmanager_dmenu"
   },
 
-  "clock": {
-    "interval": 1,
-    "format": " {:%H:%M}",
-    "format-alt": " {:%d.%m.%Y %H:%M:%S}",
-    "tooltip-format": "<tt><small>{calendar}</small></tt>",
-    "calendar": {
-      "mode": "month",
-      "weeks-pos": "left",
-      "format": {
-        "today": "<span color='#e0af68'><b>{}</b></span>"
-      }
-    }
+  "tray": {
+    "icon-size": 15,
+    "spacing": 6
   },
 
   "battery": {
@@ -105,8 +102,27 @@
     },
     "format": "{icon} {capacity}%",
     "format-charging": "󰂄 {capacity}%",
-    "format-plugged": " {capacity}%",
+    "format-plugged": "󰚥 {capacity}%",
     "format-icons": ["󰁺", "󰁼", "󰁾", "󰂀", "󰁹"],
     "tooltip-format": "{time} · {power:.1f}W"
+  },
+
+  "clock": {
+    "interval": 1,
+    "format": "󰥔  {:%H:%M}",
+    "format-alt": "󰃭  {:%a, %d %b %Y}",
+    "tooltip-format": "<tt><small>{calendar}</small></tt>",
+    "calendar": {
+      "mode": "month",
+      "weeks-pos": "left",
+      "format": {
+        "today": "<span color='#fab387'><b>{}</b></span>"
+      }
+    }
+  },
+
+  "custom/separator": {
+    "format": "│",
+    "tooltip": false
   }
 }
